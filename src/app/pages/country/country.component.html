@@ -1,5 +1,11 @@
+@if(error())
+{
+<app-error title="The requested country was not found in the database"></app-error>
+}
+@else
+{
 <div>
-  <app-header [title]="(titlePage)" [stats]="(stats)"></app-header>
+  <app-header [title]="(titlePage)" [options]="(options)"></app-header>
   <div class="chart-container wrapper-container">
     <div class="container">
       <app-chart-card title="countryChart" label="medals" [years]="(years)" [values]="(medalsPerYear)"></app-chart-card>
@@ -10,3 +16,4 @@
     <a routerLink="">Go back</a>
   </div>
 </div>
+}

@@ -9,9 +9,10 @@ import { CountryComponent } from "./pages/country/country.component";
 import { DashboardPieChartComponent } from './components/dashboard-pie-chart/dashboard-pie-chart.component';
 import { ChartCardComponent } from "src/app/components/chart-card/chart-card.component";
 import { HeaderComponent } from "src/app/components/header/header.component";
+import { ErrorComponent } from "./pages/error/error.component";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent, CountryComponent, DashboardPieChartComponent, ChartCardComponent, HeaderComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, CountryComponent, DashboardPieChartComponent, ChartCardComponent, HeaderComponent, ErrorComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],

@@ -104,7 +104,7 @@ export class DataService {
 
   // Récupère un pays par son nom + calcule les totaux
   getCountryWithStatsById(id: number): Observable<{
-    country: Olympic;
+    olympic: Olympic;
     totalMedals: number;
     totalAthletes: number;
     years: number[];
@@ -113,14 +113,14 @@ export class DataService {
 
     console.log("getCountryWithStatsById");
     return this.getCountryById(id).pipe(
-      map((country: Olympic | undefined) => {
-        if (!country) return null;
+      map((olympic: Olympic | undefined) => {
+        if (!olympic) throw new Error("Pays non présent dans la base.");
         return {
-          country,
-          totalMedals: this.calculateTotalMedals(country.participations),
-          totalAthletes: this.calculateTotalAthletes(country.participations),
-          years: country.participations.map(p => p.year),
-          medals: country.participations.map(p => p.medalsCount.toString())
+          olympic,
+          totalMedals: this.calculateTotalMedals(olympic.participations),
+          totalAthletes: this.calculateTotalAthletes(olympic.participations),
+          years: olympic.participations.map(p => p.year),
+          medals: olympic.participations.map(p => p.medalsCount.toString())
         };
       })
     );

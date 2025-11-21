@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { catchError, map, of } from 'rxjs';
-import { COUNTRY_NAME } from 'src/app/constants/constants.utils';
-import { Stat } from 'src/app/models/stat.model';
+import { Option } from 'src/app/models/option.model';
 import { DataService } from 'src/app/services/data.service';
 
 
@@ -41,7 +40,7 @@ export class CountryComponent implements OnInit {
   readonly entryData = computed(() => this.dataServiceResponse()?.value);
 
 
-  public stats!: Stat[];
+  public options!: Option[];
 
 
 
@@ -58,13 +57,13 @@ export class CountryComponent implements OnInit {
     const data = this.entryData();
     if (data) {
       console.log("setValues " + data.medals)
-      this.titlePage = data.country.country;
-      this.totalEntries = data.country.participations.length;
+      this.titlePage = data.olympic.country;
+      this.totalEntries = data.olympic.participations.length;
       this.years = data.years;
       this.medalsPerYear = data.medals;
       this.totalMedals = data.totalMedals;
       this.totalAthletes = data.totalAthletes;
-      this.stats = [
+      this.options = [
         {
           libelle: "Number of entries",
           value: this.totalEntries
@@ -80,6 +79,5 @@ export class CountryComponent implements OnInit {
       ];
     }
   }
-
 }
 

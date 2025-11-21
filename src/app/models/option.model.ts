@@ -1,4 +1,4 @@
-export interface Stat {
+export interface Option {
     libelle: string;
     value: number;
 }

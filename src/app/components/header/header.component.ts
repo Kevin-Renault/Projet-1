@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Stat } from 'src/app/models/stat.model';
+import { Option } from 'src/app/models/option.model';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +9,6 @@ import { Stat } from 'src/app/models/stat.model';
 export class HeaderComponent {
 
   @Input() title!: string;
-  @Input() stats!: Stat[];
+  @Input() options!: Option[];
 
 }

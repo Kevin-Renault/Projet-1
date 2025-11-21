@@ -2,11 +2,11 @@
     <div>{{ title }}</div>
 </div>
 <div class="split">
-    @for(stat of stats; track stat)
+    @for(option of options; track option)
     {
     <div>
-        <p>{{ stat.libelle }}</p>
-        <p>{{ stat.value }}</p>
+        <p>{{ option.libelle }}</p>
+        <p>{{ option.value }}</p>
     </div>
     }
 </div>

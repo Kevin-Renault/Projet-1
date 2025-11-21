@@ -3,14 +3,15 @@ import { NOT_FOUND } from 'src/app/constants/constants.utils';
 import { Option } from 'src/app/models/option.model';
 
 @Component({
-  selector: 'app-not-found',
-  templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss']
+  selector: 'app-error',
+  templateUrl: './error.component.html',
+  styleUrl: './error.component.scss'
 })
-export class NotFoundComponent {
+export class ErrorComponent {
+
+  @Input() title: string = NOT_FOUND;
   titlePage: string = "Error page informations";
   public options!: Option[];
-  @Input() notFound: string = NOT_FOUND;
 
   constructor() { }
 
