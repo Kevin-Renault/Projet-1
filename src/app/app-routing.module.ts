@@ -16,21 +16,13 @@ const routes: Routes = [
     component: CountryComponent
   },
   {
-    path: 'country/:' + COUNTRY_NAME,
-    component: CountryComponent
-  },
-  {
     path: 'error',
     component: ErrorComponent
   }
   ,
   {
-    path: 'not-found',
-    component: NotFoundComponent
-  },
-  {
     path: '**',
-    component: NotFoundComponent,
+    component: ErrorComponent,
   },
 ];
 

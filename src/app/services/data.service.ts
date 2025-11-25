@@ -80,35 +80,13 @@ export class DataService {
     );
   }
 
-  // Récupère un pays par son nom + calcule les totaux
-  getCountryWithStatsByName(name: string): Observable<{
-    country: Olympic;
-    totalMedals: number;
-    totalAthletes: number;
-    years: number[];
-    medals: string[];
-  } | null> {
-    return this.getCountryByName(name).pipe(
-      map((country: Olympic | undefined) => {
-        if (!country) return null;
-        return {
-          country,
-          totalMedals: this.calculateTotalMedals(country.participations),
-          totalAthletes: this.calculateTotalAthletes(country.participations),
-          years: country.participations.map(p => p.year),
-          medals: country.participations.map(p => p.medalsCount.toString())
-        };
-      })
-    );
-  }
-
-  // Récupère un pays par son nom + calcule les totaux
+  // Récupère un pays par son id + calcule les totaux
   getCountryWithStatsById(id: number): Observable<{
     olympic: Olympic;
     totalMedals: number;
     totalAthletes: number;
-    years: number[];
-    medals: string[];
+    years: string[];
+    medals: number[];
   } | null> {
 
     console.log("getCountryWithStatsById");
@@ -119,8 +97,8 @@ export class DataService {
           olympic,
           totalMedals: this.calculateTotalMedals(olympic.participations),
           totalAthletes: this.calculateTotalAthletes(olympic.participations),
-          years: olympic.participations.map(p => p.year),
-          medals: olympic.participations.map(p => p.medalsCount.toString())
+          years: olympic.participations.map(p => p.year.toString()),
+          medals: olympic.participations.map(p => p.medalsCount)
         };
       })
     );

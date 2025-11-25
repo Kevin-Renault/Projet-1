@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import Chart from 'chart.js/auto';
 import { PieChartData } from 'src/app/models/pie-chart-data.model';
@@ -15,20 +15,24 @@ export class DashboardPieChartComponent {
   @Input() countryNames!: string[];
   @Input() sumOfAllMedalsYears!: number[];
 
-  public pieChart!: Chart<"pie", number[], string>;
+  @ViewChild('pieCanvas', { static: true }) pieCanvas!: ElementRef<HTMLCanvasElement>;
+
+  public pieChart: any;
 
   constructor(private router: Router) { }
 
 
   ngOnChanges() {
     // Vérifie si l'Input est défini et non vide
-    if (this.pieChartDatas) {
+    if (this.pieChartDatas && this.pieCanvas) {
       this.buildPieChart(this.pieChartDatas.map(item => item.id), this.pieChartDatas.map(item => item.country), this.pieChartDatas.map(item => item.medals));
     }
   }
 
   buildPieChart(ids: number[], countryNames: string[], sumOfAllMedalsYears: number[]) {
-    const pieChart = new Chart("DashboardPieChart", {
+    const ctx = this.pieCanvas.nativeElement.getContext('2d');
+    if (!ctx) return;
+    const pieChart = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: countryNames,
@@ -40,7 +44,8 @@ export class DashboardPieChartComponent {
         }],
       },
       options: {
-        aspectRatio: 2.5,
+        responsive: true,
+        maintainAspectRatio: false,
         onClick: (e) => {
           if (e.native) {
             const points = pieChart.getElementsAtEventForMode(e.native, 'point', { intersect: true }, true)

@@ -19,8 +19,8 @@ export class CountryComponent implements OnInit {
   public totalMedals: number = 0;
   public totalAthletes: number = 0;
 
-  public medalsPerYear!: string[];
-  public years!: number[];
+  public medalsPerYear!: number[];
+  public years!: string[];
 
 
   readonly entryId = Number(this.route.snapshot.paramMap.get("id"));
