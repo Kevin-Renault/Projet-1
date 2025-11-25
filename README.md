@@ -1,29 +1,100 @@
-# OlympicGamesStarter
+# Projet-1
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.6.
+Dépôt contenant une application Angular modulaire pour afficher des statistiques et des graphiques (par pays / par année). Ce README décrit l'installation, la structure du projet, les fonctionnalités et un aperçu du fonctionnement général.
 
-Don't forget to install your node_modules before starting (`npm install`).
+## Installation
 
-## Development server
+Pré-requis :
+- Node.js (version 14 ou supérieure recommandée)
+- npm ou yarn
+- Angular CLI (optionnel, pour utiliser `ng serve` / `ng build`)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Étapes :
 
-## Build
+1. Installer les dépendances :
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```powershell
+npm install
+# ou
+yarn install
+```
 
-## Where to start
+2. Lancer l'application en développement :
 
-As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
+```powershell
+npm start
+# ou (si Angular CLI est installé)
+ng serve --open
+```
 
-- `components` folder: contains every reusable components
-- `pages` folder: contains components used for routing
-- `core` folder: contains the business logic (`services` and `models` folders)
+3. Construire pour la production :
 
-I suggest you to start by understanding this starter code. Pay an extra attention to the `app-routing.module.ts` and the `olympic.service.ts`.
+```powershell
+npm run build
+# ou
+ng build --configuration production
+```
 
-Once mastered, you should continue by creating the typescript interfaces inside the `models` folder. As you can see I already created two files corresponding to the data included inside the `olympic.json`. With your interfaces, improve the code by replacing every `any` by the corresponding interface.
+4. Lancer les tests unitaires :
 
-You're now ready to implement the requested features.
+```powershell
+npm test
+```
 
-Good luck!
+Les scripts sont définis dans `package.json`.
+
+## Structure du projet
+
+Organisation principale (chemin relatif à la racine) :
+
+- `src/` — code source de l'application
+	- `main.ts` — point d'entrée qui bootstrappe `AppModule`
+	- `index.html` — page HTML principale
+	- `styles.scss` — styles globaux
+	- `app/` — code de l'application
+		- `app.module.ts` — module racine
+		- `app-routing.module.ts` — configuration des routes
+		- `app.component.*` — composant racine
+		- `components/` — composants réutilisables (ex : `chart-card`, `dashboard-pie-chart`, `header`)
+		- `pages/` — pages principales (ex : `home`, `country`, `error`, `not-found`)
+		- `services/` — services pour la logique métier et l'accès aux données
+		- `models/` — interfaces et modèles TypeScript
+		- `constants/` — constantes partagées
+		- `utils/` — utilitaires (ex : gestion des couleurs)
+- `assets/` — images et fichiers statiques (inclut `mock/olympic.json` pour les données de test)
+- `environments/` — configurations d'environnement (`environment.ts`, `environment.prod.ts`)
+
+Fichiers de configuration principaux : `tsconfig.json`, `angular.json`, `karma.conf.js`, `package.json`.
+
+## Fonctionnalitéss
+
+- Navigation par routes entre les pages (home, détail d'un pays, page d'erreur).
+- Composants de visualisation des données : cartes et graphiques (exemples : diagrammes en secteurs, cartes de statistiques).
+- Services centralisés pour charger et transformer les données (possibilité d'utiliser des mocks ou une API vraie).
+- Modèles TypeScript pour typage fort des données (pays, participations, options de graphique).
+- Structure modulaire facilitant l'ajout de nouvelles pages et composants réutilisables.
+- Tests unitaires configurés avec Karma + Jasmine.
+
+## Aperçu du fonctionnement général
+
+1. Le fichier `src/main.ts` démarre l'application et bootstrape `AppModule`.
+2. Le routage (défini dans `src/app/app-routing.module.ts`) dirige vers les différentes pages (`home`, `country`, `error`, etc.).
+3. Chaque page assemble des composants réutilisables depuis `src/app/components/` pour construire l'interface utilisateur.
+4. Les composants qui affichent des graphiques s'appuient sur des données fournies par les services de `src/app/services/`.
+5. Les données peuvent provenir d'un backend réel ou d'un fichier mock situé dans `src/assets/mock/olympic.json`.
+6. Les modèles dans `src/app/models/` définissent la structure des données échangées et facilitent la maintenance et l'évolution du code.
+
+## Développement et bonnes pratiques
+
+- Utiliser des composants petits et réutilisables plutôt que de gros composants monolithiques.
+- Placer la logique métier dans les services et garder les composants concentrés sur l'affichage.
+- Ajouter des tests unitaires pour les fonctions critiques et composants clefs.
+
+## Liens et ressources
+
+- Architecture détaillée : `Architecture.md`
+- Scripts et dépendances : `package.json`
+
+---
+
+Fichier `README.md` mis à jour.

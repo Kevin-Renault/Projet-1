@@ -2,6 +2,7 @@
   @if(error())
   {
   <app-error title="The requested country was not found in the database"></app-error>
+
   }
   @else if (loading()){
   <app-header [title]="(titlePage)"></app-header>
