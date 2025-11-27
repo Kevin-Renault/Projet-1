@@ -88,8 +88,6 @@ export class DataService {
     years: string[];
     medals: number[];
   } | null> {
-
-    console.log("getCountryWithStatsById");
     return this.getCountryById(id).pipe(
       map((olympic: Olympic | undefined) => {
         if (!olympic) throw new Error("Pays non présent dans la base.");

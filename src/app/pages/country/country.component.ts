@@ -56,7 +56,6 @@ export class CountryComponent implements OnInit {
   setValues() {
     const data = this.entryData();
     if (data) {
-      console.log("setValues " + data.medals)
       this.titlePage = data.olympic.country;
       this.totalEntries = data.olympic.participations.length;
       this.years = data.years;
